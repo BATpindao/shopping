@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.UserMapper">
+    <resultMap type="com.shopping.entity.User" id="UserMap">
+        <result property="Id" column="id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userMoney" column="user_money" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <select id="selectMoney" resultType="BigDecimal">
+        SELECT `user_money` FROM `user` WHERE `id`=#{id}
+    </select>
+
+    <update id="updateMoney">
+      update user set `user_money`=`user_money`- #{money}
+      where id=#{id}
+    </update>
+
+    <update id="refundMoney">
+        update user set `user_money`=`user_money`+ #{money}
+        where id=#{id}
+    </update>
+</mapper>
+

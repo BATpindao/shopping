@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.DetailsMapper">
+    <resultMap type="com.shopping.entity.Details" id="UserMap">
+        <result property="detailsId" column="details_id" jdbcType="INTEGER"/>
+        <result property="Id" column="id" jdbcType="INTEGER"/>
+        <result property="detailsMoney" column="details_money" jdbcType="DECIMAL"/>
+        <result property="Message" column="message" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectDetails" resultMap="UserMap">
+        SELECT `details_id`,`id`,`details_money`,`message`
+        FROM `details`
+        WHERE `id`= #{id}
+    </select>
+
+    <insert id="insertDetails">
+        INSERT INTO `details` (`id`,`details_money`,`message`)
+        VALUE (#{Id},#{detailsMoney},#{Message})
+    </insert>
+
+</mapper>
+
